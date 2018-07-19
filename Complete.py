@@ -87,6 +87,8 @@ print('======A + B======')
 CM=AM.add(BM)
 if CM != None:
     CM.display()
+else:
+    pass
 print('')
 
 #A-B
@@ -94,6 +96,8 @@ print('======A - B======')
 CM=AM.sub(BM)
 if CM != None:
     CM.display()
+else:
+    pass    
 print('')
 
 #A*B
@@ -106,3 +110,5 @@ print('')
 print('======the tranpose of A * B======')
 CＭ = CＭ.transpose()
 CＭ.display()
+print('')
+print('==========Finish==========')
