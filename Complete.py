@@ -1,7 +1,8 @@
 import random
 
 from copy import deepcopy
-
+#可測試加法矩陣是否合理
+#也可測試乘法矩陣是否合理 [ＭxN]*[NxK] =[M*K]
 
 class Matrix:
     #雙迴圈利用list的方式建立矩陣
@@ -41,27 +42,36 @@ class Matrix:
 
     def mul(self, m):
         """return a new Matrix object after multiplication"""
-        CM = Matrix(self.nrows, m.ncols)
-        for i in range(self.nrows):
-            for j in range(m.ncols):
-                CM.mat[i][j] = 0
-                for p in range(self.nrows):
-                    CM.mat[i][j] = CM.mat[i][j] + AM.mat[i][p] * BM.mat[p][j]
-        return CM
+        CM = Matrix(nrows_A, m.ncols) #先利用Ｍatrix 創造一個nrows_A x m.cols的矩陣，等等要用
+        if ncols_A==nrows_B:
+            for i in range(nrows_A):
+                for j in range(ncols_B):
+                    CM.mat[i][j] = 0
+                    for p in range(ncols_A):
+                        CM.mat[i][j] = CM.mat[i][j] + AM.mat[i][p] * BM.mat[p][j]
+            return CM
+        else:
+            print("Matrixs' size should be MxN NxM")
+            return None
 
     def transpose(self):
         """return a new Matrix object after transpose"""
-        CM = Matrix(self.nrows, self.ncols)
-        for i in range(self.nrows):
-            for j in range(self.ncols):
-                CM.mat[j][i] = self.mat[i][j] 
-        return CM
+        DM = Matrix(ncols_B, nrows_A)#利用Ｍatrix 創造一個ncols_B x nrows_A 的矩陣
+        if ncols_A==nrows_B:
+            for i in range(nrows_A):
+                for j in range(ncols_B):
+                    DM.mat[j][i] = CM.mat[i][j]
+            return DM
+        else:
+            print("Matrixs' size should be MxN NxM")
+            return None
+    
     
     def display(self):
         """Display the content in the matrix"""
         for i in range(self.nrows):
             for j in range(self.ncols):
-                print(self.mat[i][j],end=' ')
+                print("%4d"%self.mat[i][j],end='')
             print('')
     
 ## main ##
@@ -102,13 +112,19 @@ print('')
 
 #A*B
 print('======A * B======')
-CＭ = AM.mul(BM)
-CＭ.display()
+CＭ=AM.mul(BM)
+if CM != None:
+    CM.display()
+else:
+    pass
 print('')
 
 #轉置
 print('======the tranpose of A * B======')
-CＭ = CＭ.transpose()
-CＭ.display()
-print('')
+DＭ=AＭ.transpose()
+if DM != None:
+   DM.display()
+else:
+    pass
+
 print('==========Finish==========')
